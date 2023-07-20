@@ -1,0 +1,34 @@
+# Start by importing functions from the math library.
+import math
+
+# Prompt user to input temperature, store it in a variable & print it
+temp = input("Enter a tempererature")
+print("Temperature: " + str(temp))
+# Prompt the user for the relative humidity, store it in a variable & print it
+humid = input("Enter a relative humidity")
+print("Humidity: " + str(humid))
+# Define a variable for each of the constants of the formula
+# use the first of the two HI formulas - i.e. the one with "only" 9 constants
+# found here: http://en.wikipedia.org/wiki/Heat_index#Formula
+c1 = (-42.379)
+c2 = (2.04901523)
+c3 = (10.14333127)
+c4 = (-0.22475541)
+c5 = (-6.83783 * 10**-3)
+c6 = (-5.481717 * 10**-2)
+c7 = (1.22874 * 10**-3)
+c8 = (8.5282 * 10**-4)
+c9 = (-1.99 * 10**-6)
+# Compute the heat index corresponding to the temperature and humidity
+# Split it up into three expressions to make it more readable
+P1 = float(c1 + (c2*temp) + (c3*humid))
+P2 = float((c4*(temp)*(humid)) + (c5*((temp)**2)) + (c6*((humid)**2)))
+P3 = float(c7*((temp)**2)*(humid)) + (c8*(temp)*((humid)**2)) + c9*((temp)**2)*((humid)**2)
+HI = (P1 + P2 + P3)
+# Print the calculated heat index
+print(HI)
+
+# Print the rounded up heat index as an integer
+# use the ceil function in the math library to round up
+heatIndex = math.ceil(HI)
+print(heatIndex)
